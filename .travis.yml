@@ -3,16 +3,16 @@ services:
   - docker
 
 before_install:
-  - docker build -t smermont/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t sergiomermont/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true USERNAME/react-test npm test
+  - docker run -e CI=true sergiomermont/react-test npm test
 
 after_success:
-  - docker build -t smermont/multi-client ./client
-  - docker build -t smermont/multi-nginx ./nginx
-  - docker build -t smermont/multi-server ./server
-  - docker build -t smermont/multi-worker ./worker
+  - docker build -t sergiomermont/multi-client ./client
+  - docker build -t sergiomermont/multi-nginx ./nginx
+  - docker build -t sergiomermont/multi-server ./server
+  - docker build -t sergiomermont/multi-worker ./worker
   # Log in to the docker CLI.
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
